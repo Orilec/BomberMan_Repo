@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8644785162615384216}
   m_Layer: 0
   m_Name: Bomb
-  m_TagString: Untagged
+  m_TagString: StopsExplosionExpension
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,3 +97,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2021c272e7cd944b6bcdd9b88a3199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 3134780387111992592}
+  _baseColor: {r: 0, g: 0, b: 0, a: 1}
+  _detonationColor: {r: 0.6037736, g: 0.013670328, b: 0.013670328, a: 1}
+  _timeBeforeDetonation: 5
+  _explosionRadius: 3
+  _explosionPrefab: {fileID: 7369621825902751640, guid: 82308b13c91905f4f86de22226a99e09, type: 3}
+  globalManager: {fileID: 0}
