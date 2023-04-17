@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6840983739670266899}
   - component: {fileID: 7254254888612349248}
   m_Layer: 0
-  m_Name: Block
+  m_Name: Destructible
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
+  m_Color: {r: 0.8679245, g: 0.609221, b: 0.35535777, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
