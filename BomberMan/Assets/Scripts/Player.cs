@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     public Movement playerMovement;
     public ProgressBar playerLifeBar, playerCooldownBar;
     public BombSpawn playerBombSpawner;
+    public BombKick playerKickBomb;
+    public GameObject playerEyes;
 
     public void OnHurt(int damages)
     {
@@ -35,7 +37,6 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-
         playerCooldownBar.UpdateBar(playerBombSpawner.cooldownProgress, playerBombSpawner.cooldownFrames);
     }
 }

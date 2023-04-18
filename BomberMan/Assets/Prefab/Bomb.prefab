@@ -101,6 +101,7 @@ MonoBehaviour:
   _baseColor: {r: 0, g: 0, b: 0, a: 1}
   _detonationColor: {r: 0.6037736, g: 0.013670328, b: 0.013670328, a: 1}
   _explosionPrefab: {fileID: 7369621825902751640, guid: 82308b13c91905f4f86de22226a99e09, type: 3}
-  timeBeforeDetonation: 3
-  explosionRadius: 3
+  _cameraShake: {fileID: 0}
+  timeBeforeDetonation: 10
+  explosionRadius: 2
   globalManager: {fileID: 0}

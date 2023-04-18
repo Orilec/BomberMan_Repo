@@ -28,6 +28,10 @@ public class InputTemp : MonoBehaviour
         {
             _player.playerBombSpawner.SpawnBomb();
         }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            _player.playerKickBomb.KickBomb();
+        }
     }
 
 }
