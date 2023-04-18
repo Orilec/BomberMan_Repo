@@ -9,13 +9,10 @@ public class Bomb : MonoBehaviour
     [SerializeField]
     private Color _baseColor, _detonationColor;
     [SerializeField]
-    private float _timeBeforeDetonation;
-    [SerializeField]
-    private int _explosionRadius;
-    [SerializeField]
     private Explosion _explosionPrefab;
 
-
+    public float timeBeforeDetonation;
+    public int explosionRadius;
     public GlobalManager globalManager;
     // Start is called before the first frame update
     void Start()
@@ -38,29 +35,109 @@ public class Bomb : MonoBehaviour
 
     private IEnumerator Detonate()
     {
-        yield return new WaitForSeconds(_timeBeforeDetonation);
+        yield return new WaitForSeconds(timeBeforeDetonation);
         ComputeExplosion();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }
 
     private void ComputeExplosion()
     {
-        for (int x = (int)transform.position.x + 1; x < (int)transform.position.x +_explosionRadius + 1; x++)
+        Instantiate(_explosionPrefab, new Vector3((int)transform.position.x, (int)transform.position.y, -1), Quaternion.identity);
+        for (int x = (int)transform.position.x + 1; x < (int)transform.position.x +explosionRadius + 1; x++)
         {
-            var instance = Instantiate(_explosionPrefab, new Vector3(x, (int)transform.position.y, -1), Quaternion.identity);
+            if (globalManager.currentGrid.gameElementsArray[x, (int)transform.position.y] != null)
+            {
+                if (!globalManager.currentGrid.gameElementsArray[x, (int)transform.position.y].CompareTag("BlocksExplosion"))
+                {
+                    var instance = Instantiate(_explosionPrefab, new Vector3(x, (int)transform.position.y, -1), Quaternion.identity);
+                    if (globalManager.currentGrid.gameElementsArray[x, (int)transform.position.y].CompareTag("StopsExplosionExpension"))
+                    {
+                        break;
+                    }
+
+                }
+                else
+                {
+                    break;
+                }
+            }
+            else
+            {
+                var instance = Instantiate(_explosionPrefab, new Vector3(x, (int)transform.position.y, -1), Quaternion.identity);
+            }
         }
-        for (int x = (int)transform.position.x - 1; x > (int)transform.position.x - _explosionRadius - 1; x--)
+
+        for (int x = (int)transform.position.x - 1; x > (int)transform.position.x - explosionRadius - 1; x--)
         {
-            var instance = Instantiate(_explosionPrefab, new Vector3(x, (int)transform.position.y, -1), Quaternion.identity);
+            if (globalManager.currentGrid.gameElementsArray[x, (int)transform.position.y] != null)
+            {
+                if (globalManager.currentGrid.gameElementsArray[x, (int)transform.position.y].tag != "BlocksExplosion")
+                {
+                    var instance = Instantiate(_explosionPrefab, new Vector3(x, (int)transform.position.y, -1), Quaternion.identity);
+                    if (globalManager.currentGrid.gameElementsArray[x, (int)transform.position.y].tag == "StopsExplosionExpension")
+                    {
+                        break;
+                    }
+
+                }
+                else
+                {
+                    break;
+                }
+            }
+            else
+            {
+                var instance = Instantiate(_explosionPrefab, new Vector3(x, (int)transform.position.y, -1), Quaternion.identity);
+            }
         }
-        for (int y = (int)transform.position.y + 1; y < (int)transform.position.y + _explosionRadius + 1; y++)
+
+        for (int y = (int)transform.position.y + 1; y < (int)transform.position.y + explosionRadius + 1; y++)
         {
-            var instance = Instantiate(_explosionPrefab, new Vector3((int)transform.position.x, y, -1), Quaternion.identity);
+            if (globalManager.currentGrid.gameElementsArray[(int)transform.position.x, y] != null)
+            {
+                if (globalManager.currentGrid.gameElementsArray[(int)transform.position.x, y].tag != "BlocksExplosion")
+                {
+                    var instance = Instantiate(_explosionPrefab, new Vector3((int)transform.position.x, y, -1), Quaternion.identity);
+                    if (globalManager.currentGrid.gameElementsArray[(int)transform.position.x, y].tag == "StopsExplosionExpension")
+                    {
+                        break;
+                    }
+
+                }
+                else
+                {
+                    break;
+                }
+            }
+            else
+            {
+                var instance = Instantiate(_explosionPrefab, new Vector3((int)transform.position.x, y, -1), Quaternion.identity);
+            }
         }
-        for (int y = (int)transform.position.y - 1; y > (int)transform.position.y - _explosionRadius - 1 ; y--)
+
+        for (int y = (int)transform.position.y - 1; y > (int)transform.position.y - explosionRadius - 1 ; y--)
         {
-            var instance = Instantiate(_explosionPrefab, new Vector3((int)transform.position.x, y, -1), Quaternion.identity);
+            if (globalManager.currentGrid.gameElementsArray[(int)transform.position.x, y] != null)
+            {
+                if (globalManager.currentGrid.gameElementsArray[(int)transform.position.x, y].tag != "BlocksExplosion")
+                {
+                    var instance = Instantiate(_explosionPrefab, new Vector3((int)transform.position.x, y, -1), Quaternion.identity);
+                    if (globalManager.currentGrid.gameElementsArray[(int)transform.position.x, y].tag == "StopsExplosionExpension")
+                    {
+                        break;
+                    }
+
+                }
+                else
+                {
+                    break;
+                }
+            }
+            else
+            {
+                var instance = Instantiate(_explosionPrefab, new Vector3((int)transform.position.x, y, -1), Quaternion.identity);
+            }
         }
 
     }

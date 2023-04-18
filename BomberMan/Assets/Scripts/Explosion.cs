@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float timeBeforeDestruction;
+    public int damages;
+    private void Start()
     {
-        
+        StartCoroutine(DestroySelf());
+    }
+    private IEnumerator DestroySelf()
+    {
+        yield return new WaitForSeconds(timeBeforeDestruction);
+        Destroy(gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        var destructible = other.GetComponent<Destructible>();
+        if(destructible != null)
+        {
+            destructible.ExplodeSelf();
+        }
+        var player = other.GetComponent<Player>();
+        if(player != null)
+        {
+            player.OnHurt(-damages);
+        }
     }
 }
