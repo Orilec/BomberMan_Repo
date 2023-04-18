@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private float invincibilityTime;
+    [SerializeField] private bool isInvincible;
+
+    public Color playerColor, hurtColor;
     public Life playerLife;
     public Movement playerMovement;
     public LifeBar playerLifeBar;
@@ -11,7 +16,20 @@ public class Player : MonoBehaviour
 
     public void OnHurt(int damages)
     {
-        playerLife.ChangeLife(damages);
-        playerLifeBar.UpdateLifeBar(playerLife.currentLife, playerLife.maxLife);
+        if (!isInvincible)
+        {
+            playerLife.ChangeLife(damages);
+            playerLifeBar.UpdateLifeBar(playerLife.currentLife, playerLife.maxLife);
+            StartCoroutine(InvincibilityFrames());
+        }
+    }
+
+    private IEnumerator InvincibilityFrames()
+    {
+        isInvincible = true;
+        _spriteRenderer.color = hurtColor;
+        yield return new WaitForSeconds(invincibilityTime);
+        isInvincible = false;
+        _spriteRenderer.color = playerColor;
     }
 }

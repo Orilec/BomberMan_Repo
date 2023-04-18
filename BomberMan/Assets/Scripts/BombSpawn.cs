@@ -15,9 +15,6 @@ public class BombSpawn : MonoBehaviour
             globalManager.currentGrid.SetGridElement(_bombSpawnerMovement.PositionOnGrid()[0], _bombSpawnerMovement.PositionOnGrid()[1], instance.gameObject);
             instance.globalManager = globalManager;
         }
-        else {
-            Debug.Log("There's already a bomb");
-        }
     }
 
 }

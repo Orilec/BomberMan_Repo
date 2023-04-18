@@ -11,6 +11,8 @@ public class Bomb : MonoBehaviour
     [SerializeField]
     private Explosion _explosionPrefab;
 
+
+    public CameraShake _cameraShake;
     public float timeBeforeDetonation;
     public int explosionRadius;
     public GlobalManager globalManager;
@@ -18,6 +20,7 @@ public class Bomb : MonoBehaviour
     void Start()
     {
         StartCoroutine(StartDetonation());
+        _cameraShake = FindObjectOfType<CameraShake>();
     }
 
 
@@ -36,8 +39,9 @@ public class Bomb : MonoBehaviour
     private IEnumerator Detonate()
     {
         yield return new WaitForSeconds(timeBeforeDetonation);
+        _cameraShake.TriggerShake();
         ComputeExplosion();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         Destroy(gameObject);
     }
 
