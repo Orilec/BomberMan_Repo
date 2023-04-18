@@ -4,31 +4,29 @@ using UnityEngine;
 
 public class InputTemp : MonoBehaviour
 {
-    [SerializeField] private Movement _playerMovement;
-    [SerializeField]
-    private BombSpawn _playerBombspawn;
+    [SerializeField] private Player _player;
 
     private void Update()
     {
         if (Input.GetKey(KeyCode.Z))
         {
-            _playerMovement.SimpleMove(Vector3.up);
+            _player.playerMovement.SimpleMove(Vector3.up);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            _playerMovement.SimpleMove(Vector3.down);
+            _player.playerMovement.SimpleMove(Vector3.down);
         }
         if (Input.GetKey(KeyCode.Q))
         {
-            _playerMovement.SimpleMove(Vector3.left);
+            _player.playerMovement.SimpleMove(Vector3.left);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            _playerMovement.SimpleMove(Vector3.right);
+            _player.playerMovement.SimpleMove(Vector3.right);
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _playerBombspawn.SpawnBomb();
+            _player.playerBombSpawner.SpawnBomb();
         }
     }
 

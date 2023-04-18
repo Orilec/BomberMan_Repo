@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public Color playerColor, hurtColor;
     public Life playerLife;
     public Movement playerMovement;
-    public LifeBar playerLifeBar;
+    public ProgressBar playerLifeBar, playerCooldownBar;
     public BombSpawn playerBombSpawner;
 
     public void OnHurt(int damages)
@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
         if (!isInvincible)
         {
             playerLife.ChangeLife(damages);
-            playerLifeBar.UpdateLifeBar(playerLife.currentLife, playerLife.maxLife);
+            playerLifeBar.UpdateBar(playerLife.currentLife, playerLife.maxLife);
             StartCoroutine(InvincibilityFrames());
         }
     }
@@ -31,5 +31,11 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(invincibilityTime);
         isInvincible = false;
         _spriteRenderer.color = playerColor;
+    }
+
+    private void Update()
+    {
+
+        playerCooldownBar.UpdateBar(playerBombSpawner.cooldownProgress, playerBombSpawner.cooldownFrames);
     }
 }
