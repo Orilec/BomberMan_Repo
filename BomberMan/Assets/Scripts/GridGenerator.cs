@@ -21,24 +21,37 @@ public class GridGenerator : MonoBehaviour
         {
             for (int y = 0; y < _grid.gameElementsArray.GetLength(1); y++)
             {
-                var r = Random.Range(0, 6);
+
+                // creates blocks on the edge of the grid
                 if (x == 0 || y == 0 || x == _grid.gameElementsArray.GetLength(0) - 1 || y == _grid.gameElementsArray.GetLength(1) - 1)
                 {
                     var instance = Instantiate(_blockPrefab, new Vector3(x, y, 0), Quaternion.identity, transform);
                     _grid.SetGridElement(x, y, instance);
-                } 
-                else if(r == 0 && !(x==10 && y==5))
-                {
-                    var instance = Instantiate(_blockPrefab, new Vector3(x, y, 0), Quaternion.identity, transform);
-                    _grid.SetGridElement(x, y, instance);
                 }
-                else if (r > 3 && !(x == 10 && y == 5))
+                else
                 {
-                    var instance = Instantiate(_destructiblePrefab, new Vector3(x, y, 0), Quaternion.identity, transform);
-                    _grid.SetGridElement(x, y, instance.gameObject);
+                    var xInsideRange = x > 7 && x < 13;
+                    var yInsideRange = y > 3 && y < 7;
+                    if (!(xInsideRange && yInsideRange)) // lets central space for player spawn
+                    {
+                        var r = Random.Range(0, 6);
+                        if (r == 0) //spawn random blocks
+                        {
+                            var instance = Instantiate(_blockPrefab, new Vector3(x, y, 0), Quaternion.identity, transform);
+                            _grid.SetGridElement(x, y, instance);
+                        }
+                        else
+                        {
+                            if (r > 3 && !(x == 10 && y == 5)) //spawn random destructibles
+                            {
+                                var instance = Instantiate(_destructiblePrefab, new Vector3(x, y, 0), Quaternion.identity, transform);
+                                _grid.SetGridElement(x, y, instance.gameObject);
+                            }
+                        }
+                    }
                 }
             }
         }
-        globalManager.currentGrid = _grid;
+        globalManager.currentGrid = _grid; //sends grid to global manager so other classes can access it
     }
 }

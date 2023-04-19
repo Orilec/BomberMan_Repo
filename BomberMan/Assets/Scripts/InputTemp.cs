@@ -5,33 +5,38 @@ using UnityEngine;
 public class InputTemp : MonoBehaviour
 {
     [SerializeField] private Player _player;
+    [SerializeField] private GlobalManager _globalManager;
+    public KeyCode up, down, left, right, bomb, kick;
+
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Z))
+        if (!_globalManager.gameEnded)
         {
-            _player.playerMovement.SimpleMove(Vector3.up);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            _player.playerMovement.SimpleMove(Vector3.down);
-        }
-        if (Input.GetKey(KeyCode.Q))
-        {
-            _player.playerMovement.SimpleMove(Vector3.left);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            _player.playerMovement.SimpleMove(Vector3.right);
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _player.playerBombSpawner.SpawnBomb();
-        }
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            _player.playerKickBomb.KickBomb();
+            if (Input.GetKey(up))
+            {
+                _player.playerMovement.SimpleMove(Vector3.up);
+            }
+            if (Input.GetKey(down))
+            {
+                _player.playerMovement.SimpleMove(Vector3.down);
+            }
+            if (Input.GetKey(left))
+            {
+                _player.playerMovement.SimpleMove(Vector3.left);
+            }
+            if (Input.GetKey(right))
+            {
+                _player.playerMovement.SimpleMove(Vector3.right);
+            }
+            if (Input.GetKeyDown(bomb))
+            {
+                _player.playerBombSpawner.SpawnBomb();
+            }
+            if (Input.GetKeyDown(kick))
+            {
+                _player.playerKickBomb.KickBomb();
+            }
         }
     }
-
 }

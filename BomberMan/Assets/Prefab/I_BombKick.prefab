@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f91fc38cf6c2ab345bf1a4458198534d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _effectTime: 5
+  _effectTime: 10
   _itemSpriteRenderer: {fileID: 7367305641339545268}
   _itemCollider: {fileID: 8608499587834185475}
-  _globalManager: {fileID: 0}
+  globalManager: {fileID: 0}

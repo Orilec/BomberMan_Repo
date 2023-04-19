@@ -21,4 +21,16 @@ public class Life : MonoBehaviour
         currentLife += amount;
     }
 
+    public bool CheckDefeat()
+    {
+        if(currentLife <= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 }

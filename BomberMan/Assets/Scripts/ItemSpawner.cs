@@ -11,11 +11,14 @@ public class ItemSpawner : MonoBehaviour
 
     private void Update()
     {
-        _spawnTimer += Time.deltaTime;
-        if (_spawnTimer >= _spawnFrequence)
+        if (!_globalManager.gameEnded)
         {
-            SpawnItem();
-            _spawnTimer = 0f;
+            _spawnTimer += Time.deltaTime;
+            if (_spawnTimer >= _spawnFrequence)
+            {
+                SpawnItem();
+                _spawnTimer = 0f;
+            }
         }
     }
     private void SpawnItem()
