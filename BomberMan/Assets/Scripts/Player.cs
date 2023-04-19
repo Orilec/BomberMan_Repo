@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public BombSpawn playerBombSpawner;
     public BombKick playerKickBomb;
     public GameObject playerEyes;
+    public bool itemInEffect, playerKickBombEnabled;
 
     public void OnHurt(int damages)
     {

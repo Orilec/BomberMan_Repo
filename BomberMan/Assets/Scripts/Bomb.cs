@@ -47,15 +47,17 @@ public class Bomb : MonoBehaviour
 
     private void ComputeExplosion()
     {
-        Instantiate(_explosionPrefab, new Vector3((int)transform.position.x, (int)transform.position.y, -1), Quaternion.identity);
-        for (int x = (int)transform.position.x + 1; x < (int)transform.position.x +explosionRadius + 1; x++)
+        var transformX = Mathf.RoundToInt(transform.position.x);
+        var transformY = Mathf.RoundToInt(transform.position.y);
+        Instantiate(_explosionPrefab, new Vector3(transformX, transformY, -1), Quaternion.identity);
+        for (int x = transformX + 1; x < transformX +explosionRadius + 1; x++)
         {
-            if (globalManager.currentGrid.gameElementsArray[x, (int)transform.position.y] != null)
+            if (globalManager.currentGrid.gameElementsArray[x, transformY] != null)
             {
-                if (!globalManager.currentGrid.gameElementsArray[x, (int)transform.position.y].CompareTag("BlocksExplosion"))
+                if (!globalManager.currentGrid.gameElementsArray[x, transformY].CompareTag("BlocksExplosion"))
                 {
-                    var instance = Instantiate(_explosionPrefab, new Vector3(x, (int)transform.position.y, -1), Quaternion.identity);
-                    if (globalManager.currentGrid.gameElementsArray[x, (int)transform.position.y].CompareTag("StopsExplosionExpension"))
+                    var instance = Instantiate(_explosionPrefab, new Vector3(x, transformY, -1), Quaternion.identity);
+                    if (globalManager.currentGrid.gameElementsArray[x, transformY].CompareTag("StopsExplosionExpension"))
                     {
                         break;
                     }
@@ -68,18 +70,18 @@ public class Bomb : MonoBehaviour
             }
             else
             {
-                var instance = Instantiate(_explosionPrefab, new Vector3(x, (int)transform.position.y, -1), Quaternion.identity);
+                var instance = Instantiate(_explosionPrefab, new Vector3(x, transformY, -1), Quaternion.identity);
             }
         }
 
-        for (int x = (int)transform.position.x - 1; x > (int)transform.position.x - explosionRadius - 1; x--)
+        for (int x = transformX - 1; x > transformX - explosionRadius - 1; x--)
         {
-            if (globalManager.currentGrid.gameElementsArray[x, (int)transform.position.y] != null)
+            if (globalManager.currentGrid.gameElementsArray[x, transformY] != null)
             {
-                if (globalManager.currentGrid.gameElementsArray[x, (int)transform.position.y].tag != "BlocksExplosion")
+                if (globalManager.currentGrid.gameElementsArray[x, transformY].tag != "BlocksExplosion")
                 {
-                    var instance = Instantiate(_explosionPrefab, new Vector3(x, (int)transform.position.y, -1), Quaternion.identity);
-                    if (globalManager.currentGrid.gameElementsArray[x, (int)transform.position.y].tag == "StopsExplosionExpension")
+                    var instance = Instantiate(_explosionPrefab, new Vector3(x, transformY, -1), Quaternion.identity);
+                    if (globalManager.currentGrid.gameElementsArray[x, transformY].tag == "StopsExplosionExpension")
                     {
                         break;
                     }
@@ -92,18 +94,18 @@ public class Bomb : MonoBehaviour
             }
             else
             {
-                var instance = Instantiate(_explosionPrefab, new Vector3(x, (int)transform.position.y, -1), Quaternion.identity);
+                var instance = Instantiate(_explosionPrefab, new Vector3(x, transformY, -1), Quaternion.identity);
             }
         }
 
-        for (int y = (int)transform.position.y + 1; y < (int)transform.position.y + explosionRadius + 1; y++)
+        for (int y = transformY + 1; y < transformY + explosionRadius + 1; y++)
         {
-            if (globalManager.currentGrid.gameElementsArray[(int)transform.position.x, y] != null)
+            if (globalManager.currentGrid.gameElementsArray[transformX, y] != null)
             {
-                if (globalManager.currentGrid.gameElementsArray[(int)transform.position.x, y].tag != "BlocksExplosion")
+                if (globalManager.currentGrid.gameElementsArray[transformX, y].tag != "BlocksExplosion")
                 {
-                    var instance = Instantiate(_explosionPrefab, new Vector3((int)transform.position.x, y, -1), Quaternion.identity);
-                    if (globalManager.currentGrid.gameElementsArray[(int)transform.position.x, y].tag == "StopsExplosionExpension")
+                    var instance = Instantiate(_explosionPrefab, new Vector3(transformX, y, -1), Quaternion.identity);
+                    if (globalManager.currentGrid.gameElementsArray[transformX, y].tag == "StopsExplosionExpension")
                     {
                         break;
                     }
@@ -116,18 +118,18 @@ public class Bomb : MonoBehaviour
             }
             else
             {
-                var instance = Instantiate(_explosionPrefab, new Vector3((int)transform.position.x, y, -1), Quaternion.identity);
+                var instance = Instantiate(_explosionPrefab, new Vector3(transformX, y, -1), Quaternion.identity);
             }
         }
 
-        for (int y = (int)transform.position.y - 1; y > (int)transform.position.y - explosionRadius - 1 ; y--)
+        for (int y = transformY - 1; y > transformY - explosionRadius - 1 ; y--)
         {
-            if (globalManager.currentGrid.gameElementsArray[(int)transform.position.x, y] != null)
+            if (globalManager.currentGrid.gameElementsArray[transformX, y] != null)
             {
-                if (globalManager.currentGrid.gameElementsArray[(int)transform.position.x, y].tag != "BlocksExplosion")
+                if (globalManager.currentGrid.gameElementsArray[transformX, y].tag != "BlocksExplosion")
                 {
-                    var instance = Instantiate(_explosionPrefab, new Vector3((int)transform.position.x, y, -1), Quaternion.identity);
-                    if (globalManager.currentGrid.gameElementsArray[(int)transform.position.x, y].tag == "StopsExplosionExpension")
+                    var instance = Instantiate(_explosionPrefab, new Vector3(transformX, y, -1), Quaternion.identity);
+                    if (globalManager.currentGrid.gameElementsArray[transformX, y].tag == "StopsExplosionExpension")
                     {
                         break;
                     }
@@ -140,7 +142,7 @@ public class Bomb : MonoBehaviour
             }
             else
             {
-                var instance = Instantiate(_explosionPrefab, new Vector3((int)transform.position.x, y, -1), Quaternion.identity);
+                var instance = Instantiate(_explosionPrefab, new Vector3(transformX, y, -1), Quaternion.identity);
             }
         }
 
