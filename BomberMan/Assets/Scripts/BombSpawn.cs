@@ -10,8 +10,9 @@ public class BombSpawn : MonoBehaviour
 
     public float cooldownFrames, cooldownProgress;
     public GlobalManager globalManager;
-
-   public void SpawnBomb() {
+    public int currentExplosionRadius;
+    
+    public void SpawnBomb() {
         if (!_cooldown)
         {
             if (globalManager.currentGrid.gameElementsArray[_bombSpawnerMovement.PositionOnGrid()[0], _bombSpawnerMovement.PositionOnGrid()[1]] == null)
@@ -20,10 +21,11 @@ public class BombSpawn : MonoBehaviour
                 var instance = Instantiate(_bombPrefab, new Vector3(_bombSpawnerMovement.PositionOnGrid()[0], _bombSpawnerMovement.PositionOnGrid()[1], -1), Quaternion.identity);
                 globalManager.currentGrid.SetGridElement(_bombSpawnerMovement.PositionOnGrid()[0], _bombSpawnerMovement.PositionOnGrid()[1], instance.gameObject);
                 instance.globalManager = globalManager;
+                instance.explosionRadius = currentExplosionRadius;
             }
         }
     }
-
+    
     private IEnumerator Cooldown()
     {
         cooldownProgress = 0;

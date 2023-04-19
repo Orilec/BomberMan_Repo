@@ -9,4 +9,10 @@ public class ItemBombKick : Item
         base.OnCollected(player);
         player.playerKickBombEnabled = true;
     }
+
+    public override void OnEndOfEffect(Player player)
+    {
+        base.OnEndOfEffect(player);
+        player.playerKickBombEnabled = false;
+    }
 }

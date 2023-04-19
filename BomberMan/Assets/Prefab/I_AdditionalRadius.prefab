@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7103158251476030225}
   - component: {fileID: 7367305641339545268}
   - component: {fileID: 8608499587834185475}
-  - component: {fileID: 2077823055}
+  - component: {fileID: 4189222641960338257}
   m_Layer: 0
-  m_Name: I_BombKick
+  m_Name: I_AdditionalRadius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 86a1d2d108f1438408df2a95a64290e6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 186e86426ddb18c439fb2636820f0e65, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2077823055
+--- !u!114 &4189222641960338257
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,10 +121,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6995707842246548988}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f91fc38cf6c2ab345bf1a4458198534d, type: 3}
+  m_Script: {fileID: 11500000, guid: 0bd1ffd56b16cb24e8dbb2564dce44a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _effectTime: 5
+  _effectTime: 0
   _itemSpriteRenderer: {fileID: 7367305641339545268}
   _itemCollider: {fileID: 8608499587834185475}
   _globalManager: {fileID: 0}
