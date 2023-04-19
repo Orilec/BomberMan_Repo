@@ -14,7 +14,7 @@ public class Grid
         gameElementsArray = new GameObject[gridWidth, gridHeight];
     }
 
-    public GameObject ReturnGridElement(int x, int y) {
+    public GameObject ReturnGridElementAtPosition(int x, int y) {
         return this.gameElementsArray[x, y];
     }
 
@@ -23,4 +23,15 @@ public class Grid
         gameElementsArray[x, y] = gridElement;
     }
 
+    public Vector2Int GetRandomEmptyGridPosition()
+    {
+        var x = Random.Range(0, _gridWidth);
+        var y = Random.Range(0, _gridHeight);
+        while (ReturnGridElementAtPosition(x, y)!= null)
+        {
+            x = Random.Range(0, _gridWidth);
+            y = Random.Range(0, _gridHeight);
+        }
+        return new Vector2Int(x, y);
+    }
 }
